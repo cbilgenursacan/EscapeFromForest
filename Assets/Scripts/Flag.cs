@@ -1,3 +1,4 @@
+using HmsPlugin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,9 @@ public class Flag : MonoBehaviour
 {
     public GameObject sfx;
     public GameObject gameOverEffect;
-    public GameObject finishEffect;
-    public GameObject mainBarrel;
+    public GameObject environment;
+    public int index;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Barrier"))
@@ -22,8 +24,10 @@ public class Flag : MonoBehaviour
 
     IEnumerator waitForGameOver()
     {
-        mainBarrel.GetComponent<Movement>().enabled = false;
+        environment.SetActive(false);
         yield return new WaitForSeconds(1);
+        HMSAdsKitManager.Instance.ShowInterstitialAd();
+        PlayerPrefs.SetInt("level", index);
         SceneManager.LoadScene("GameOverScene");
     }
 

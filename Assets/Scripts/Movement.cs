@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    float velocity = 1;
     float xVelocity = 2.5f;
     float leftLimit = -1.5f;
     float rightLimit = 1.5f;
